@@ -6,12 +6,16 @@
 
 https://docs.microsoft.com/ja-jp/windows/wsl/install-win10
 
+1. Linux 用 Windows サブシステムを有効
 ~~~
 dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
 ~~~
 
+2. WSL 2 に更新する条件確認
+
 x64 システムの場合:バージョン 1903 以降、ビルド 18362 以上
 
+3. 仮想マシンの機能を有効
 ~~~
 dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
 ~~~
