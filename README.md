@@ -20,7 +20,15 @@ x64 システムの場合:バージョン 1903 以降、ビルド 18362 以上
 dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
 ~~~
 
+4. Linux カーネル更新プログラム パッケージをダウンロード
+
 https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi
+
+5. WSL 2 を既定のバージョンとして設定
+
+~~~
+wsl --set-default-version 2
+~~~
 
 ## Azure に ASP.NET Core Web アプリを作成する
 https://docs.microsoft.com/ja-jp/azure/app-service/quickstart-dotnetcore?pivots=platform-linux
