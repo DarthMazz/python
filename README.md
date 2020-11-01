@@ -36,6 +36,9 @@ https://docs.microsoft.com/ja-jp/azure/app-service/quickstart-dotnetcore?pivots=
 ## ハードウェア構成の変更後に Windows 10 のライセンス認証をもう一度行う
 https://office-hack.com/windows/windows10-license-authentication/#section1_2
 
+## カスタム コンテナーを使用して Linux で関数を作成
+https://docs.microsoft.com/ja-jp/azure/azure-functions/functions-create-function-linux-custom-image?tabs=bash%2Cportal&pivots=programming-language-csharp
+
 ## Mac
 https://qiita.com/crankcube/items/15f06b32ec56736fc43a
 
