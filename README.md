@@ -69,12 +69,21 @@ https://pypi.org/project/pytest-flake8/
 pytest --flake8
 ~~~
 
+### Coverage
+https://qiita.com/kg1/items/e2fc65e4189faf50bfe6
+~~~
+pytest -v --cov=CODE_DIRECTORY
+~~~
+
 ### reference
 #### 構文
 http://www.tohoho-web.com/python/index.html
 
 #### Docstring
 https://qiita.com/simonritchie/items/49e0813508cad4876b5a
+
+#### コマンドライン
+https://qiita.com/stkdev/items/e262dada7b68ea91aa0c
 
 #### Markdown
 https://gist.github.com/mignonstyle/083c9e1651d7734f84c99b8cf49d57fa
