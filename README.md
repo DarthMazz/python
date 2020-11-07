@@ -87,3 +87,7 @@ https://qiita.com/stkdev/items/e262dada7b68ea91aa0c
 
 #### Markdown
 https://gist.github.com/mignonstyle/083c9e1651d7734f84c99b8cf49d57fa
+
+#### Nested Virtualization
+https://blog.amedama.jp/entry/virtualbox-nested-virtualization
+
