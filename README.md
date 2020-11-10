@@ -62,6 +62,15 @@ pyenv global 3.8.5
 pyenv versions
 ~~~
 
+### PYTHONPATH
+テストフォルダからメイン処理を参照するために、環境変数にパッケージのパスを通す
+~~~
+export PYTHONPATH=./coverage
+~~~
+
+### pylint -> flake8
+https://qiita.com/psychoroid/items/2c2acc06c900d2c0c8cb
+
 ### pytest
 https://pypi.org/project/pytest-flake8/
 
