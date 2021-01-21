@@ -100,3 +100,5 @@ https://gist.github.com/mignonstyle/083c9e1651d7734f84c99b8cf49d57fa
 #### Nested Virtualization
 https://blog.amedama.jp/entry/virtualbox-nested-virtualization
 
+#### Google Drive API, SpreadSheet
+https://qiita.com/akabei/items/0eac37cb852ad476c6b9
