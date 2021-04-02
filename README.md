@@ -39,8 +39,11 @@ https://office-hack.com/windows/windows10-license-authentication/#section1_2
 ## カスタム コンテナーを使用して Linux で関数を作成
 https://docs.microsoft.com/ja-jp/azure/azure-functions/functions-create-function-linux-custom-image?tabs=bash%2Cportal&pivots=programming-language-csharp
 
-## Mac
+## MacOSとHomebrewとpyenvで快適python環境を
 https://qiita.com/crankcube/items/15f06b32ec56736fc43a
+
+### Mac GitHub SSH接続設定
+https://qiita.com/ucan-lab/items/e02f2d3a35f266631f24
 
 ### Homebrew
 
