@@ -1,6 +1,18 @@
 from bottle import Bottle, template, static_file
 import os
 
+# BASIC認証のユーザ名とパスワード
+USERNAME = "user"
+PASSWORD = "pass"
+
+
+def check(username, password):
+    u"""
+    BASIC認証のユーザ名とパスワードをチェック
+    @bottle.auth_basic(check)で適用
+    """
+    return username == USERNAME and password == PASSWORD
+
 
 app = Bottle()
 
@@ -24,7 +36,10 @@ texts = [
 
 @app.get("/<username>")
 def userpage(username):
-    return template("userpage", username=username, texts=texts)
+    nums = [1, 2, 3]
+    images = [(p1, p2) for p1, p2 in zip(nums, texts)]
+    print(images)
+    return template("userpage", username=username, texts=texts, images=images)
 
 
 @app.route("/")

@@ -23,13 +23,13 @@
     <div class="pt-5 bg-light">
       <div class="container">
         <div class="row">
-          %for i in range(1,4) :
+          %for img in images :
           <div class="col-lg-6 mb-5">
             <div class="card lg-6 box-shadow" >
-              <img class="card-img-top" src="/img/{{i}}.jpg" alt="Card image cap">
+              <img class="card-img-top" src="/img/{{img[0]}}.jpg" alt="Card image cap">
               <div class="card-body">
                 <h5 class="card-title">@{{username}}</h5>
-                <p class="card-text">{{texts[i]}}</p>
+                <p class="card-text">{{img[1]}}</p>
                 <div class="d-flex justify-content-between align-items-center">
                   <div class="btn-group">
                     <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
