@@ -1,12 +1,8 @@
 from bottle import template, static_file, redirect
 import os
-from . import bottleapp
+from . import root
 
-app = bottleapp.app
-
-@app.route("/")
-def index():
-    return template("download")
+app = root.app
 
 
 @app.route('/searchdownload')

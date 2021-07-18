@@ -1,10 +1,10 @@
 from bottle import Bottle
 import os
-from routes import bottleapp
+from routes import root
 from routes import download
 
 
-app = bottleapp.app
+app = root.app
 
 
 def main():
