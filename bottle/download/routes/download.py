@@ -1,12 +1,14 @@
 from bottle import template, static_file, redirect
 import os
 from . import root
+from .configs import Configs
 
 app = root.app
 
 
 @app.route('/searchdownload')
 def searchdownload():
+    print(Configs.test['application.run.host'])
     return redirect('/download/abc.csv')
 
 
