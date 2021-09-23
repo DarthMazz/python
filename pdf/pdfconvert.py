@@ -13,7 +13,7 @@ def main():
     # convert_from_path(pdf_path, dpi=300, size=3508, output_folder='./img', output_file=pdf_path.stem, fmt='jpg')
 
     # 300DPI, 縦横比を維持したまま長辺を3508として変換
-    pages = convert_from_path(pdf_path, dpi=300, size=3508, output_folder='./img', output_file=pdf_path.stem, fmt='jpg')
+    pages = convert_from_path(pdf_path, dpi=300, size=3508)
     for i, page in enumerate(pages):
         page.save(f'img/{pdf_path.stem}-{i:02d}.jpg', 'JPEG')
 
