@@ -1,4 +1,4 @@
-from bottle import Bottle, template
+from bottle import Bottle, static_file, template
 from azure.storage.blob import BlobServiceClient
 from azure.storage.blob import ResourceTypes, AccountSasPermissions, generate_account_sas
 from datetime import datetime, timedelta
@@ -13,8 +13,8 @@ import os
 app = Bottle()
 
 
-@app.route("/")
-def root():
+@app.route('/view')
+def view():
 
     # アクセスキー取得（OS環境設定より取得。アクセスキーをコードに記載するとGitHubで警告される）
     connect_str = os.getenv('AZURE_STORAGE_CONNECTION_STRING')
@@ -23,7 +23,7 @@ def root():
     # コンテナクライアント生成
     container_client = blob_service_client.get_container_client("ma2container")
     # BLOBリスト取得
-    blob_list = container_client.list_blobs(name_starts_with='ma2')
+    blob_list = container_client.list_blobs(name_starts_with='preview_')
     # SASキー生成（アクセスキーより１時間の制限でアクセスキーを生成）
     saskey = generate_account_sas(
             blob_service_client.account_name,
@@ -41,6 +41,11 @@ def root():
         blobs.append(blob_prop)
 
     return template('main', blobs=blobs)
+
+
+@app.route('/<filepath>')
+def view(filepath):
+    return static_file(filepath, './')
 
 
 def main():
