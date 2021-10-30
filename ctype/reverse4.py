@@ -13,3 +13,7 @@ def reverse_bytes(buf):
 
 if __name__ == "__main__":
     print(reverse_bytes(b"./README.md"))
+    filename = './README.md'
+    print(reverse_bytes(filename.encode()))
+    filename = './リードミー.md'
+    print(reverse_bytes(filename.encode()))
