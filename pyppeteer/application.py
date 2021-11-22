@@ -1,3 +1,9 @@
+# reference
+# https://qiita.com/loach/items/c881f7d9ef5add132c7b#要素を取得
+# https://zenn.dev/shotakaha/articles/5885cac71af6dc966e97
+# https://www.webtomoblg.net/web/puppeteer-practice/
+
+
 import asyncio
 from pyppeteer import launch
 import time
