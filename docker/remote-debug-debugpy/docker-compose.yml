@@ -1,0 +1,32 @@
+version: "3.9"
+
+services:
+  flask-app:
+    image: remote-debug-debugpy:test
+    container_name: remote-debug-debugpy
+    build:
+      context: .
+      target: develop
+    ports:
+      - 5678:5678
+    volumes:
+      - .:/app
+    environment:
+      - FLASK_DEBUG=1
+    entrypoint:
+      [
+        "python",
+        "-m",
+        "debugpy",
+        "--listen",
+        "0.0.0.0:5678",
+        "--wait-for-client",
+        "-m",
+        "app"
+      ]
+    networks:
+      - remote-debug-debugpy
+
+networks:
+  remote-debug-debugpy:
+    name: remote-debug-debugpy
