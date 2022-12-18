@@ -1,9 +1,9 @@
 AWSTemplateFormatVersion: 2010-09-09
 Resources:
-  GarageLmabdaFunction:
+  GarageLambdaFunction:
     Type: AWS::Lambda::Function
-    Properties: 
-      FunctionName: garage-lambada
+    Properties:
+      FunctionName: garage-lambda
       Description: Test Lmabda
       Runtime: python3.8
       Code:
@@ -42,3 +42,37 @@ Resources:
                   - logs:CreateExportTask
                   - s3:GetBucketAcl
                   - s3:PutObject
+
+  GarageLambdaFunctionApi:
+    Type: AWS::ApiGateway::RestApi
+    Properties:
+      Name: api
+  GarageLambdaFunctionApiResource:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      RestApiId: !Ref GarageLambdaFunctionApi
+      ParentId: !GetAtt GarageLambdaFunctionApi.RootResourceId
+      PathPart: garage-lambda
+    DependsOn:
+      - GarageLambdaFunctionApi
+      - GarageLambdaFunction
+  GarageLambdaFunctionPermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      FunctionName: garage-lambda
+      Action: lambda:InvokeFunction
+      Principal: apigateway.amazonaws.com
+    DependsOn:
+      - GarageLambdaFunctionApiResource
+  ResourceMethod:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      RestApiId: !Ref GarageLambdaFunctionApi
+      ResourceId: !Ref GarageLambdaFunctionApiResource
+      AuthorizationType: None
+      HttpMethod: POST
+      Integration:
+        Type: AWS
+        IntegrationHttpMethod: POST
+        Uri: !Sub arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:garage-lambda/invocations
+    DependsOn: GarageLambdaFunctionPermission
