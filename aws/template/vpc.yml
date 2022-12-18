@@ -1,55 +1,94 @@
 AWSTemplateFormatVersion: 2010-09-09
 Resources:
+  # Virtual Private Cloud
   VPC:
-    Type: "AWS::EC2::VPC"
+    Type: AWS::EC2::VPC
     Properties:
       CidrBlock: 10.0.0.0/16
       Tags:
         - Key: Name
-          Value: "garage-vpc"
-        - Key: Application
-          Value: !Ref "AWS::StackId"
-  PublicSubnet:
-    Type: "AWS::EC2::Subnet"
+          Value: garage-vpc
+
+  # Subnet
+  PublicSubnetAn1a:
+    Type: AWS::EC2::Subnet
     Properties:
       VpcId: !Ref VPC
       CidrBlock: 10.0.0.0/24
       AvailabilityZone: ap-northeast-1a
       Tags:
         - Key: Name
-          Value: "garage-vpc-public-subnet"
-        - Key: Application
-          Value: !Ref "AWS::StackId"
-  PrivateSubnet:
-    Type: "AWS::EC2::Subnet"
+          Value: garage-vpc-public-subnet-an1a
+
+  PrivateSubnetAn1a:
+    Type: AWS::EC2::Subnet
     Properties:
       VpcId: !Ref VPC
       CidrBlock: 10.0.2.0/24
       AvailabilityZone: ap-northeast-1a
       Tags:
         - Key: Name
-          Value: "garage-vpc-private-subnet"
-        - Key: Application
-          Value: !Ref "AWS::StackId"
+          Value: garage-vpc-private-subnet-an1a
+
+  # Route Table
+  PublicSubnetRouteTableAn1a:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId: !Ref VPC
+      Tags:
+        - Key: Name
+          Value: garage-vpc-public-route-table-an1a
+  PublicSubnetRouteTableAssociationAn1a:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      RouteTableId: !Ref PublicSubnetRouteTableAn1a
+      SubnetId: !Ref PublicSubnetAn1a
+  PublicSubnetRouteAn1a01:
+    Type: AWS::EC2::Route
+    Properties:
+      DestinationCidrBlock: 0.0.0.0/0
+      GatewayId: !Ref InternetGateway
+      RouteTableId: !Ref PublicSubnetRouteTableAn1a
+
+  PrivateSubnetRouteTableAn1a:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId: !Ref VPC
+      Tags:
+        - Key: Name
+          Value: garage-vpc-private-route-table-an1a
+  PrivateSubnetRouteTableAssociationAn1a:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      RouteTableId: !Ref PrivateSubnetRouteTableAn1a
+      SubnetId: !Ref PrivateSubnetAn1a
+  PrivateSubnetRouteAn1a01:
+    Type: AWS::EC2::Route
+    Properties:
+      DestinationCidrBlock: 0.0.0.0/0
+      NatGatewayId: !Ref NATGatewayAn1a
+      RouteTableId: !Ref PrivateSubnetRouteTableAn1a
+
+  # Internet Gateway
   InternetGateway:
-    Type: "AWS::EC2::InternetGateway"
+    Type: AWS::EC2::InternetGateway
     Properties:
       Tags:
         - Key: Name
-          Value: "garage-igw"
-        - Key: Application
-          Value: !Ref "AWS::StackId"
+          Value: garage-vpc-igw
   AttachGateway:
-    Type: "AWS::EC2::VPCGatewayAttachment"
+    Type: AWS::EC2::VPCGatewayAttachment
     Properties:
       VpcId: !Ref VPC
       InternetGatewayId: !Ref InternetGateway
-  RouteTable:
-    Type: "AWS::EC2::RouteTable"
+
+  # NAT Gateway
+  NATGatewayEIPAn1a:
+    Type: AWS::EC2::EIP
     Properties:
-      VpcId: !Ref VPC
-      Tags:
-        - Key: Name
-          Value: "garage-vpc-public-route-table"
-        - Key: Application
-          Value: !Ref "AWS::StackId"
+      Domain: vpc
+  NATGatewayAn1a:
+    Type: AWS::EC2::NatGateway
+    Properties:
+      AllocationId: !GetAtt NATGatewayEIPAn1a.AllocationId
+      SubnetId: !Ref PublicSubnetAn1a
