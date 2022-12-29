@@ -3,6 +3,8 @@
 ## 参考
 
 - https://docs.docker.com/registry/deploying/
+- https://qiita.com/Gin/items/c58c4485caae1c139e8f
+- https://blog.nishi.network/2020/06/17/hosting-docker-private-registry/
 
 ## localhost に private registry を作成する
 
