@@ -1,6 +1,13 @@
 {
   "recommendations": [
-    "ms-azuretools.vscode-azurefunctions",
-    "ms-python.python"
+    "ms-ceintl.vscode-language-pack-ja",
+    "pkief.material-icon-theme",
+    "esbenp.prettier-vscode",
+    "ms-python.python",
+    "ms-python.isort",
+    "ms-python.flake8",
+    "ms-python.black-formatter",
+    "hediet.vscode-drawio",
+    "jebbs.plantuml"
   ]
 }
