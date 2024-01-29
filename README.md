@@ -99,29 +99,66 @@ https://qiita.com/kg1/items/e2fc65e4189faf50bfe6
 ```
 pytest -v --cov=CODE_DIRECTORY
 ```
+## Ubuntu
 
-### reference
+### Install pyenv
 
-#### 構文
+```
+curl https://pyenv.run | bash
+```
+
+### Setup pyenv
+
+PATH 設定を .bashrc に設定
+```
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+```
+```
+source .bashrc
+pyenv --version
+pyenv 2.3.35
+```
+
+python をインストールするために必要なパッケージをインストール
+
+```
+sudo apt update; sudo apt install build-essential libssl-dev zlib1g-dev \
+libbz2-dev libreadline-dev libsqlite3-dev curl \
+libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
+```
+
+
+
+# reference
+
+## 構文
 
 http://www.tohoho-web.com/python/index.html
 
-#### Docstring
+## Docstring
 
 https://qiita.com/simonritchie/items/49e0813508cad4876b5a
 
-#### コマンドライン
+## コマンドライン
 
 https://qiita.com/stkdev/items/e262dada7b68ea91aa0c
 
-#### Markdown
+## Markdown
 
 https://gist.github.com/mignonstyle/083c9e1651d7734f84c99b8cf49d57fa
 
-#### Nested Virtualization
+## Nested Virtualization
 
 https://blog.amedama.jp/entry/virtualbox-nested-virtualization
 
-#### Google Drive API, SpreadSheet
+## Google Drive API, SpreadSheet
 
 https://qiita.com/akabei/items/0eac37cb852ad476c6b9
+
+## pyenv
+
+[automatic installer](https://github.com/pyenv/pyenv#automatic-installer)
+
+[build environment](https://github.com/pyenv/pyenv/wiki)
