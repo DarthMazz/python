@@ -1,0 +1,59 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: The template used to create an ECS Service from the ECS Console.
+Parameters:
+  ECSClusterName:
+    Type: String
+    Default: ma2moto-test-cluster
+  ECSServiceName:
+    Type: String
+    Default: nginx-service
+  SecurityGroupIDs:
+    Type: CommaDelimitedList
+    Default: sg-a8ae0bdb
+  SubnetIDs:
+    Type: CommaDelimitedList
+    Default: subnet-0e3e8fa57fa225723
+  VpcID:
+    Type: String
+    Default: vpc-80c5fee7
+  LoadBalancerName:
+    Type: String
+    Default: ''
+Resources:
+  ECSService:
+    Type: 'AWS::ECS::Service'
+    Properties:
+      Cluster: ma2moto-test-cluster
+      CapacityProviderStrategy:
+        - CapacityProvider: FARGATE
+          Base: 0
+          Weight: 1
+      TaskDefinition: 'arn:aws:ecs:ap-northeast-1:543803375852:task-definition/nginx-task:1'
+      ServiceName: nginx-service
+      SchedulingStrategy: REPLICA
+      DesiredCount: 1
+      NetworkConfiguration:
+        AwsvpcConfiguration:
+          AssignPublicIp: ENABLED
+          SecurityGroups: !Ref SecurityGroupIDs
+          Subnets: !Ref SubnetIDs
+      PlatformVersion: LATEST
+      DeploymentConfiguration:
+        MaximumPercent: 200
+        MinimumHealthyPercent: 100
+        DeploymentCircuitBreaker:
+          Enable: true
+          Rollback: true
+      DeploymentController:
+        Type: ECS
+      ServiceConnectConfiguration:
+        Enabled: false
+      Tags: []
+      EnableECSManagedTags: true
+Outputs:
+  ClusterName:
+    Description: The cluster used to create the service.
+    Value: !Ref ECSClusterName
+  ECSService:
+    Description: The created service.
+    Value: !Ref ECSService
